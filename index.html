@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Code Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #161616;
+            color: #c5a880;
+            font-family: sans-serif;
+        }
+
+        .login-container {
+            text-align: center;
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin: 8px 0;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border-radius: 5px;
+            border: 1px solid #c5a880;
+            background: #161616;
+            color: #c5a880;
+        }
+
+        .btn {
+            background-color: #161616;
+            border-radius: 10px;
+            color: #c5a880;
+            border: 1px solid #c5a880;
+            padding: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/build/three.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/EffectComposer.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/RenderPass.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/ShaderPass.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/CopyShader.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+    <div class="login-container">
+        <h2>Secret Code Login</h2>
+        <label for="username">Write your Username</label>
+        <input type="text" id="username" placeholder="Enter your username">
+
+        <label for="code">Enter the Code</label>
+        <input type="password" id="code" placeholder="Enter the secret code">
+
+        <button class="btn" id="enterBtn">ENTER</button>
+        <p class="error" id="errorMessage">ERROR CODE</p>
+    </div>
+
+    <script>
+        const correctCode = "12345"; // Define the secret code here
+        const enterBtn = document.getElementById('enterBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        enterBtn.addEventListener('click', () => {
+            const username = document.getElementById('username').value.trim();
+            const code = document.getElementById('code').value.trim();
+
+            if (username && code === correctCode) {
+                // Redirect to another page
+                window.location.href = "OPEN GIFT.html"; // Change to your desired page
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
