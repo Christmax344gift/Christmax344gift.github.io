@@ -41,7 +41,8 @@
             margin: 8px 0;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 16px;
@@ -86,14 +87,20 @@
     </div>
 
     <script>
-        // Countdown Timer
+        // Countdown Timer for Panama
         function startCountdown() {
             const countdownElement = document.getElementById('countdown');
-            const targetDate = new Date('2024-12-25T00:00:00Z'); // Set Christmas date
+            const targetDate = new Date('2024-12-25T00:00:00-05:00'); // Panama is UTC-5
 
             function updateCountdown() {
                 const now = new Date();
-                const difference = targetDate - now;
+
+                // Adjust current time to Panama's time zone offset (UTC-5)
+                const panamaTime = new Date(
+                    now.toLocaleString("en-US", { timeZone: "America/Panama" })
+                );
+
+                const difference = targetDate - panamaTime;
 
                 if (difference > 0) {
                     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -125,7 +132,7 @@
 
             if (username && code === correctCode) {
                 // Redirect to another page
-                window.location.href = "welcome.html"; // Change to your desired page
+                window.location.href = "OPEN GIFT.html"; // Change to your desired page
             } else {
                 // Show error message
                 errorMessage.style.display = 'block';
@@ -135,3 +142,4 @@
 </body>
 
 </html>
+
