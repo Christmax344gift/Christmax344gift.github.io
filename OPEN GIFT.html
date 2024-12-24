@@ -1,15 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-
 	<title>TOP-SECRET---GIFT_BY: Franklin Li Hou</title>
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
 	<style>
 		* {
 			box-sizing: border-box;
 		}
-
+	
 		body {
 			margin: 0;
 			height: 100vh;
@@ -21,26 +22,25 @@
 			color: #c5a880;
 			font-family: sans-serif;
 		}
-
+	
 		label {
 			display: inline-block;
 			background-color: #161616;
 			padding: 16px;
-			border-radius: 0.3rem;
 			cursor: pointer;
-			margin-top: 1rem;
 			width: 300px;
 			border-radius: 10px;
 			border: 1px solid #c5a880;
 			text-align: center;
+			margin-top: 1rem;
 		}
-
+	
 		ul {
 			list-style-type: none;
 			padding: 0;
 			margin: 0;
 		}
-
+	
 		.btn {
 			background-color: #161616;
 			border-radius: 10px;
@@ -49,65 +49,75 @@
 			padding: 16px;
 			width: 300px;
 			margin-bottom: 16px;
-			line-height: 1.5;
 			cursor: pointer;
+			/* LED Glow Effect */
+			box-shadow: 0 0 10px #e5ff00, 0 0 20px #c5a880, 0 0 30px #c5a880, 0 0 40px #ffb3b3;
+			transition: all 0.3s ease;
 		}
-
-		.separator {
-			font-weight: bold;
-			text-align: center;
-			width: 300px;
-			margin: 16px 0px;
-			color: #a07676;
+	
+		/* Button Glow on Hover */
+		.btn:hover {
+			box-shadow: 0 0 5px #ff0000, 0 0 20px #ffb3b3, 0 0 30px #ffb3b3, 0 0 40px #ff3333;
 		}
-
+	
 		.title {
-			color: #a07676;
+			color: #eeff00;
 			font-weight: bold;
 			font-size: 1.25rem;
 			margin-bottom: 16px;
 			text-align: center;
+			/* LED Glow Effect */
+			text-shadow: 0 0 5px #fbff00, 0 0 10px #ff9500, 0 0 15px #c5a880, 0 0 20px #ff0000;
+			padding-bottom: 50px;
 		}
-
-		.text-loading {
+	
+		#text-animation {
+			display: none;
+			text-align: center;
+			color: #c5a880;
 			font-size: 2rem;
+			animation: fadeInOut 3s forwards;
+		}
+	
+		@keyframes fadeInOut {
+			0% {
+				opacity: 0;
+				transform: scale(0.8);
+			}
+			50% {
+				opacity: 1;
+				transform: scale(1);
+			}
+			100% {
+				opacity: 0;
+				transform: scale(1.2);
+			}
+		}
+	
+		#christmas-animation {
+			display: none;
 		}
 	</style>
+	
 
-	<script>
-		window.console = window.console || function(t) {};
-	</script>
-
-
-
-	<script>
-		if (document.location.search.match(/type=embed/gi)) {
-			window.parent.postMessage("resize", "*");
-		}
-	</script>
-
-
-</head>
-
-<body translate="no">
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/build/three.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/EffectComposer.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/RenderPass.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/ShaderPass.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/CopyShader.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/LuminosityHighPassShader.js">
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+</head>
 
+<body>
 	<div id="overlay">
 		<ul>
-			<li class="title">SURPRISE</li  text-align = "center">
+			<li class="title">!SURPRISE!</li>
 			<li>
 				<button class="btn" id="btnA" type="button">
 					OPEN GIFT!!!
 				</button>
 			</li>
-
 			<li>
 				<input type="file" id="upload" hidden />
 				<label for="upload">Music</label>
@@ -115,7 +125,43 @@
 		</ul>
 	</div>
 
+	<div id="text-animation">
+		<p>🎄 Merry Christmas! 🎁</p>
+		<p>Enjoy the festive season with love and joy! ✨
+		</p>
+
 	</div>
+
+	<div id="christmas-animation"></div>
+
+	<script>
+		// Button click event
+		document.getElementById("btnA").addEventListener("click", () => {
+			// Hide the overlay
+			document.getElementById("overlay").style.display = "none";
+	
+			// Show the text animation
+			const textAnimation = document.getElementById("text-animation");
+			textAnimation.style.display = "block";
+	
+			// Wait for the text animation to complete before starting the next script
+			setTimeout(() => {
+				// Hide the text animation
+				textAnimation.style.display = "none";
+	
+				// Show Christmas animation container
+				const christmasAnimation = document.getElementById("christmas-animation");
+				christmasAnimation.style.display = "block";
+	
+				// Start the next script (e.g., Three.js animation)
+				initChristmasAnimation();
+			}, 1000); // 3000ms = 3 seconds (duration of the fadeInOut animation)
+		});
+
+	</script>
+	
+</html>
+
 
 	<script id="rendered-js">
 		const {
